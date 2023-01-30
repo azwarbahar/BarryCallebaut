@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="red">#F30000</color>
+    <color name="blackTrans_20">#33000000</color>
+    <color name="blackTrans_30">#4D000000</color>
+    <color name="white_trans_40">#66FFFFFF</color>
+    <color name="white1">#F6F6F6</color>
+    <color name="white2">#E6E6E6</color>
+    <color name="white3">#C1C1C1</color>
+    <color name="white4">#AEAEAE</color>
+
+    <color name="transparan">#00FFFFFF</color>
+    <color name="colorPrimary">#476E5C</color>
+    <color name="colorAccent">#F2994A</color>
+    <color name="colorPrimaryDark">#1A6141</color>
+    <color name="colorBackgroundActivity">#F2F2F2</color>
+    <color name="colorPrimaryTrans_10">#1A136C40</color>
+    <color name="red_notif">#FF4848</color>
+    <color name="grey_hint">#808080</color>
+    <color name="grey">#4D4D4D</color>
+    <color name="greyTrans10">#1A4D4D4D</color>
+    <color name="blueLink">#002ABA</color>
+
+    <color name="colorPrimaryTrans30">#4D476E5C</color>
+
+    <color name="text_title">#4B4B4B</color>
+    <color name="text_sub_title">#6F6F6F</color>
+</resources>
