@@ -30,6 +30,7 @@ class SensusFragment : Fragment() {
 
         binding.llContentPersonal.visibility = View.GONE
         binding.llContentAlamat.visibility = View.GONE
+        binding.llContentKebun.visibility = View.GONE
 
         binding.rlTopPersonal.setOnClickListener {
             showhideView(binding.llContentPersonal, binding.imgArrowPersonal)
@@ -37,6 +38,10 @@ class SensusFragment : Fragment() {
 
         binding.rlTopAlamat.setOnClickListener {
             showhideView(binding.llContentAlamat, binding.imgArrowAlamat)
+        }
+
+        binding.rlTopKebun.setOnClickListener {
+            showhideView(binding.llContentKebun, binding.imgArrowKebun)
         }
 
 
