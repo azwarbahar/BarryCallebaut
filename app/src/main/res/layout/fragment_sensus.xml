@@ -713,7 +713,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="16dp"
-                        android:text="Infomrasi Kebun"
+                        android:text="Informasi Kebun"
                         android:textColor="@color/grey_hint"
                         android:textSize="16sp"
                         android:textStyle="bold" />
