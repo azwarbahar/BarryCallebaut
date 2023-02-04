@@ -32,10 +32,10 @@ class InspeksiFragment : Fragment() {
             startActivity(intent)
         }
 
-        val rv_inspeksi = binding.rvInspeksi
-        rv_inspeksi.layoutManager = LinearLayoutManager(activity)
-        inspeksiAdapter = InspeksiAdapter()
-        rv_inspeksi.adapter = inspeksiAdapter
+//        val rv_inspeksi = binding.rvInspeksi
+//        rv_inspeksi.layoutManager = LinearLayoutManager(activity)
+//        inspeksiAdapter = InspeksiAdapter()
+//        rv_inspeksi.adapter = inspeksiAdapter
 
         return view
     }

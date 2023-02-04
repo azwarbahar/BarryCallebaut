@@ -3,7 +3,8 @@ package com.barrycallebaut.app.models
 import android.os.Parcel
 import android.os.Parcelable
 
-data class Petani(
+data class Petani (
+    val tanggal_sensus: String?,
     val alamat: String?,
     val created_at: String?,
     val dokumentasi_sensus: String?,
@@ -28,8 +29,9 @@ data class Petani(
     val status: String?,
     val tanggal_lahir: String?,
     val updated_at: String?
-): Parcelable {
+) : Parcelable {
     constructor(parcel: Parcel) : this(
+        parcel.readString(),
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
@@ -58,6 +60,7 @@ data class Petani(
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(tanggal_sensus)
         parcel.writeString(alamat)
         parcel.writeString(created_at)
         parcel.writeString(dokumentasi_sensus)

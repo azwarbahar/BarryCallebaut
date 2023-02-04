@@ -8,4 +8,11 @@ class Responses {
         val kode: String?,
         val pesan: String?
     )
+
+    data class ResponseSensus(
+        val `sensus_data`: List<Sensus>?,
+        val `result_sensus`: Sensus?,
+        val kode: String?,
+        val pesan: String?
+    )
 }

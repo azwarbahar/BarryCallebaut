@@ -48,31 +48,32 @@ class PetugasActivity : AppCompatActivity() {
 
     private fun loadData() {
 
-//        ApiClient.instances.getPetani()?.enqueue(object : Callback<Responses.ResponsePetani> {
-//            override fun onResponse(
-//                call: Call<Responses.ResponsePetani>,
-//                response: Response<Responses.ResponsePetani>
-//            ) {
-//                if (response.isSuccessful) {
-//                    val pesanRespon = response.message()
-//                    val message = response.body()?.pesan
-//                    val kode = response.body()?.kode
-//                    petani = response.body()?.petani_data!!
+        ApiClient.instances.getPetani()?.enqueue(object : Callback<Responses.ResponsePetani> {
+            override fun onResponse(
+                call: Call<Responses.ResponsePetani>,
+                response: Response<Responses.ResponsePetani>
+            ) {
+                if (response.isSuccessful) {
+                    val pesanRespon = response.message()
+                    val message = response.body()?.pesan
+                    val kode = response.body()?.kode
+                    if (kode.equals("1")) {
+                        petani = response.body()?.petani_data!!
 
-        val rv_petani = binding.rvPetani
-        rv_petani.layoutManager = LinearLayoutManager(this@PetugasActivity)
-        petaniAdapter = PetaniAdapter()
-        rv_petani.adapter = petaniAdapter
+                        val rv_petani = binding.rvPetani
+                        rv_petani.layoutManager = LinearLayoutManager(this@PetugasActivity)
+                        petaniAdapter = PetaniAdapter(petani)
+                        rv_petani.adapter = petaniAdapter
+                    }
+                }
 
-//                }
-//
-//            }
-//
-//            override fun onFailure(call: Call<Responses.ResponsePetani>, t: Throwable) {
-//                Log.e("ERROR", "Pesan : " + t.message)
-//            }
-//
-//        })
+            }
+
+            override fun onFailure(call: Call<Responses.ResponsePetani>, t: Throwable) {
+                Log.e("ERROR", "Pesan : " + t.message)
+            }
+
+        })
 
 
     }
