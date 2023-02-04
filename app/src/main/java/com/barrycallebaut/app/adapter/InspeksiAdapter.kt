@@ -5,21 +5,28 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.barrycallebaut.app.databinding.ItemInspeksiBinding
-import com.barrycallebaut.app.databinding.ItemPetaniBinding
-import com.barrycallebaut.app.models.Petani
-import com.barrycallebaut.app.ui.AkunPetugasActivity
+import com.barrycallebaut.app.models.Inspeksi
+import com.barrycallebaut.app.ui.DetailInspeksiActivity
 import com.barrycallebaut.app.ui.PetaniActivity
-import kotlinx.android.synthetic.main.activity_petani.view.*
+import com.barrycallebaut.app.utils.Constant
 
-class InspeksiAdapter() :
+class InspeksiAdapter(private var list: List<Inspeksi>) :
     RecyclerView.Adapter<InspeksiAdapter.MyHolderView>() {
     class MyHolderView(private var binding: ItemInspeksiBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind() {
+        fun bind(get: Inspeksi, position: Int) {
             with(itemView) {
 
+                var tanggal = get.tanggal.toString()
+                binding.tvTanggal.setText(Constant.formatDate(tanggal))
+
+                var nomor = position + 1
+                binding.tvTitle.setText("Inspeksi " + nomor)
+
                 itemView.setOnClickListener {
-                    val intent = Intent(context, PetaniActivity::class.java)
+                    val intent = Intent(context, DetailInspeksiActivity::class.java)
+                    intent.putExtra("inspeksi", get)
+                    intent.putExtra("posisi", nomor)
                     context.startActivity(intent)
 
                 }
@@ -36,7 +43,7 @@ class InspeksiAdapter() :
     }
 
     override fun onBindViewHolder(holder: MyHolderView, position: Int) =
-        holder.bind()
+        holder.bind(list.get(position), position)
 
-    override fun getItemCount() = 2
+    override fun getItemCount() = list.size
 }

@@ -33,6 +33,12 @@ interface ApiService {
         @Field("value") value: String?
     ): Call<Responses.ResponsePetani>?
 
+    @FormUrlEncoded
+    @POST("deleteDoctSensus.php")
+    fun deleteDoctSensus(
+        @Field("id") id: String?
+    ): Call<Responses.ResponsePetani>?
+
 
     // SENSUS
     @GET("getSensusPetaniId.php")
@@ -47,4 +53,10 @@ interface ApiService {
         @Part foto: MultipartBody.Part?
     ): Call<Responses.ResponseSensus>?
 
+
+    // INSPEKSI
+    @GET("getInspeksiPetaniId.php")
+    fun getInspeksiPetaniId(
+        @Query("petani_id") petani_id: String?
+    ): Call<Responses.ResponseInspeksi>?
 }

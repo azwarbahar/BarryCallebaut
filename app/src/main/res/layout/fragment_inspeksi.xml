@@ -69,7 +69,7 @@
                 android:id="@+id/tv_skala"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1/4"
+                android:text="0/4"
                 android:textColor="@color/white"
                 android:textSize="14sp"
                 android:textStyle="bold" />
@@ -92,7 +92,7 @@
         android:gravity="center"
         android:layout_marginBottom="20dp"
         android:orientation="horizontal"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="5dp"
         android:layout_below="@id/rv_inspeksi"
         android:layout_marginHorizontal="16dp"
         android:background="@drawable/bg_primary_trans_corner_8"

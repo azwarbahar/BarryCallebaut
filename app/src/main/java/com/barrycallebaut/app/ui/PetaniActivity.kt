@@ -1,6 +1,9 @@
 package com.barrycallebaut.app.ui
 
 import android.app.Activity
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
@@ -118,6 +121,15 @@ class PetaniActivity : AppCompatActivity() {
         binding.tvNama.setText(nama)
         binding.tvSubtitle.setText(kelurahan + ", " + kecamatan)
         binding.tvKontak.setText(kontak)
+
+        binding.imgCopyKontak.setOnClickListener {
+
+            val clipboard = this.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+            val clip = ClipData.newPlainText("text", kontak)
+            clipboard.setPrimaryClip(clip)
+            Toast.makeText(this, "Text copied to clipboard", Toast.LENGTH_SHORT).show()
+
+        }
 
     }
 

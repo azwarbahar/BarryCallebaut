@@ -591,6 +591,62 @@ class SensusFragment : Fragment() {
             }
         }
 
+        binding.cvOption.setOnClickListener {
+            if (isDokumentationReady) {
+                val pilihan = arrayOf(
+                    "Ganti",
+                    "Hapus"
+                )
+                val builder: androidx.appcompat.app.AlertDialog.Builder =
+                    androidx.appcompat.app.AlertDialog.Builder(activity!!)
+                builder.setTitle("Opsi")
+                builder.setItems(pilihan) { dialog, which ->
+                    when (which) {
+                        0 -> openImagePicker()
+                        1 -> deleteDoctSensus()
+                    }
+                }
+                val dialog = builder.create()
+                dialog.show()
+            }
+        }
+
+    }
+
+    private fun deleteDoctSensus() {
+        ApiClient.instances.deleteDoctSensus(petani_id)
+            ?.enqueue(object : Callback<Responses.ResponsePetani> {
+                override fun onResponse(
+                    call: Call<Responses.ResponsePetani>,
+                    response: Response<Responses.ResponsePetani>
+                ) {
+                    if (response.isSuccessful) {
+                        var kode = response.body()?.kode
+                        if (kode.equals("1")) {
+                            isDokumentationReady = false
+                            Glide.with(activity!!)
+                                .load(R.drawable.img_empty)
+                                .into(binding.imgDokumentasi)
+                            Toast.makeText(
+                                activity,
+                                "Berhasil menghapus dokumentasi",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        } else {
+                            Toast.makeText(activity, "Gagal menghapus!", Toast.LENGTH_SHORT).show()
+                        }
+                    } else {
+                        Toast.makeText(activity, "Gagal, Terjadi Kesalahan!", Toast.LENGTH_SHORT)
+                            .show()
+                    }
+                }
+
+                override fun onFailure(call: Call<Responses.ResponsePetani>, t: Throwable) {
+                    Toast.makeText(activity, "Gagal, Terjadi Kesalahan!", Toast.LENGTH_SHORT).show()
+                }
+
+            })
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

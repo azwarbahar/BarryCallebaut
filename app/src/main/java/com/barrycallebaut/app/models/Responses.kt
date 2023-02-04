@@ -15,4 +15,11 @@ class Responses {
         val kode: String?,
         val pesan: String?
     )
+
+    data class ResponseInspeksi(
+        val `inspeksi_data`: List<Inspeksi>?,
+        val `result_inspeksi`: Inspeksi?,
+        val kode: String?,
+        val pesan: String?
+    )
 }
