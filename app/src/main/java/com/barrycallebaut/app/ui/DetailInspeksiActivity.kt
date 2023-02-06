@@ -30,6 +30,10 @@ class DetailInspeksiActivity : AppCompatActivity() {
         posisi = intent.getStringExtra("posisi").toString()
         binding.tvToolbar.setText("Inspeksi " + posisi)
 
+        binding.imgBack.setOnClickListener {
+            finish()
+        }
+
         binding.llContentPersonal.visibility = View.GONE
         binding.llContent2.visibility = View.GONE
         binding.llContent3.visibility = View.GONE

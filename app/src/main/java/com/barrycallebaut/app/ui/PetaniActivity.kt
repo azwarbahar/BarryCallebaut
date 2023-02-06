@@ -59,6 +59,11 @@ class PetaniActivity : AppCompatActivity() {
         initData(petani)
         setupTabFragment()
 
+
+        binding.imgBack.setOnClickListener {
+            finish()
+        }
+
         binding.cvPhoto.setOnClickListener {
             val pilihan = arrayOf(
                 "Ganti Gambar",
