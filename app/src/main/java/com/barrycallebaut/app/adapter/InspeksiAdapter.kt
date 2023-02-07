@@ -25,8 +25,8 @@ class InspeksiAdapter(private var list: List<Inspeksi>) :
 
                 itemView.setOnClickListener {
                     val intent = Intent(context, DetailInspeksiActivity::class.java)
-                    intent.putExtra("inspeksi", get)
                     intent.putExtra("posisi", nomor)
+                    intent.putExtra("inspeksi", get)
                     context.startActivity(intent)
 
                 }

@@ -27,7 +27,7 @@ class DetailInspeksiActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         inspeksi = intent.getParcelableExtra("inspeksi")!!
-        posisi = intent.getStringExtra("posisi").toString()
+        posisi = intent.getIntExtra("posisi", 0).toString()
         binding.tvToolbar.setText("Inspeksi " + posisi)
 
         binding.imgBack.setOnClickListener {

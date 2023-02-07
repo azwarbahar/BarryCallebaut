@@ -1,135 +1,332 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swipe_refresh"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
     tools:context=".ui.PetugasActivity">
 
     <RelativeLayout
-        android:id="@+id/rl1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="16dp"
-        android:paddingVertical="8dp">
+        android:layout_height="match_parent">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cv_photo"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginHorizontal="16dp"
-            android:elevation="0dp"
-            app:cardCornerRadius="30dp">
+        <RelativeLayout
+            android:id="@+id/rl1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="16dp"
+            android:paddingVertical="8dp">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_photo"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginHorizontal="16dp"
+                android:elevation="0dp"
+                app:cardCornerRadius="30dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/img_photo"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ishaq" />
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/tv_nama"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="5dp"
+                android:layout_toLeftOf="@+id/img_search"
+                android:layout_toRightOf="@id/cv_photo"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="Ishaq Al Fatih"
+                android:textColor="@color/text_title"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_nama"
+                android:layout_alignLeft="@id/tv_nama"
+                android:layout_marginTop="5dp"
+                android:layout_toLeftOf="@+id/img_search"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="Internal Management"
+                android:textColor="@color/text_sub_title"
+                android:textSize="12sp" />
+
+            <ImageView
+                android:id="@+id/img_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginHorizontal="16dp"
+                android:src="@drawable/ic_baseline_search_24"
+                app:tint="@color/text_sub_title" />
+
+        </RelativeLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/rl1">
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <ImageView
-                    android:id="@+id/img_photo"
+                <HorizontalScrollView
+                    android:id="@+id/rl2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:scrollbars="none">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RelativeLayout
+                            android:layout_width="300dp"
+                            android:layout_height="165dp"
+                            android:layout_marginLeft="16dp"
+                            android:background="@drawable/bg_frame1">
+
+                            <com.github.mikephil.charting.charts.PieChart
+                                android:id="@+id/pie_chart"
+                                android:layout_width="120dp"
+                                android:layout_height="120dp"
+                                android:layout_centerVertical="true"
+                                android:layout_marginLeft="16dp" />
+
+                            <TextView
+                                android:id="@+id/tv_persen_sensus"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignLeft="@id/pie_chart"
+                                android:layout_alignTop="@id/pie_chart"
+                                android:layout_alignRight="@id/pie_chart"
+                                android:layout_alignBottom="@id/pie_chart"
+                                android:gravity="center"
+                                android:text="00%"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="22sp"
+                                android:textStyle="bold" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_toRightOf="@id/pie_chart"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:weightSum="2">
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:paddingVertical="10dp"
+                                    android:paddingLeft="16dp"
+                                    android:paddingRight="12dp">
+
+                                    <TextView
+                                        android:id="@+id/tv_sudah_sensus"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="00"
+                                        android:textColor="@color/white"
+                                        android:textSize="24sp"
+                                        android:textStyle="bold" />
+
+                                    <ImageView
+                                        android:id="@+id/img_status_sudah_sensus"
+                                        android:layout_width="14dp"
+                                        android:layout_height="14dp"
+                                        android:layout_below="@id/tv_sudah_sensus"
+                                        android:layout_marginTop="6dp"
+                                        android:layout_marginRight="4dp"
+                                        android:src="@drawable/ic_baseline_check_circle_24"
+                                        app:tint="@color/colorAccent" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_below="@id/tv_sudah_sensus"
+                                        android:layout_marginTop="4dp"
+                                        android:layout_toRightOf="@id/img_status_sudah_sensus"
+                                        android:ellipsize="end"
+                                        android:maxLines="1"
+                                        android:text="Telah disensus"
+                                        android:textColor="@color/white"
+                                        android:textSize="12sp" />
+
+                                </RelativeLayout>
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:paddingVertical="10dp"
+                                    android:paddingLeft="16dp"
+                                    android:paddingRight="12dp">
+
+                                    <TextView
+                                        android:id="@+id/tv_belum_sensus"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="00"
+                                        android:textColor="@color/white"
+                                        android:textSize="24sp" />
+
+                                    <ImageView
+                                        android:id="@+id/img_status_belum_sensus"
+                                        android:layout_width="14dp"
+                                        android:layout_height="14dp"
+                                        android:layout_below="@id/tv_belum_sensus"
+                                        android:layout_marginTop="6dp"
+                                        android:layout_marginRight="4dp"
+                                        android:src="@drawable/ic_baseline_access_time_24"
+                                        app:tint="@color/white" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_below="@id/tv_belum_sensus"
+                                        android:layout_marginTop="4dp"
+                                        android:layout_toRightOf="@id/img_status_belum_sensus"
+                                        android:ellipsize="end"
+                                        android:maxLines="1"
+                                        android:text="Belum disensus"
+                                        android:textColor="@color/white"
+                                        android:textSize="12sp" />
+
+                                </RelativeLayout>
+
+                            </LinearLayout>
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="300dp"
+                            android:layout_height="165dp"
+                            android:layout_marginHorizontal="16dp"
+                            android:background="@drawable/bg_frame2"
+                            android:paddingHorizontal="16dp"
+                            android:paddingVertical="12dp">
+
+                            <TextView
+                                android:id="@+id/tv_frame2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Tidak mencapai target"
+                                android:textColor="@color/white"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/tv_tidak_capai"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/tv_frame2"
+                                android:layout_marginTop="20dp"
+                                android:gravity="bottom"
+                                android:text="00"
+                                android:textColor="@color/white"
+                                android:textSize="30dp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignBottom="@id/tv_tidak_capai"
+                                android:layout_marginLeft="5dp"
+                                android:layout_toRightOf="@id/tv_tidak_capai"
+                                android:text="Petani"
+                                android:textColor="@color/white"
+                                android:textSize="20sp" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:background="@drawable/bg_white_corner_8"
+                                android:gravity="center"
+                                android:orientation="horizontal"
+                                android:paddingHorizontal="12dp"
+                                android:paddingVertical="8dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Lihat data"
+                                    android:textColor="@color/colorPrimary"
+                                    android:textSize="12sp"
+                                    android:textStyle="bold" />
+
+                                <ImageView
+                                    android:layout_width="24dp"
+                                    android:layout_height="16dp"
+                                    android:src="@drawable/ic_baseline_arrow_right_alt_24"
+                                    app:tint="@color/colorPrimary" />
+
+                            </LinearLayout>
+
+                        </RelativeLayout>
+
+
+                    </LinearLayout>
+
+
+                </HorizontalScrollView>
+
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/ishaq" />
+                    android:layout_below="@id/rl2">
+
+                    <TextView
+                        android:id="@+id/tv1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="16dp"
+                        android:text="Data petani"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_petani"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv1"
+                        android:layout_marginTop="10dp"
+                        tools:listitem="@layout/item_petani" />
+
+
+                </RelativeLayout>
 
             </RelativeLayout>
 
-        </androidx.cardview.widget.CardView>
-
-        <TextView
-            android:id="@+id/tv_nama"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="5dp"
-            android:layout_toLeftOf="@+id/img_search"
-            android:layout_toRightOf="@id/cv_photo"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:text="Ishaq Al Fatih"
-            android:textColor="@color/text_title"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tv_nama"
-            android:layout_alignLeft="@id/tv_nama"
-            android:layout_marginTop="5dp"
-            android:layout_toLeftOf="@+id/img_search"
-            android:ellipsize="end"
-            android:maxLines="2"
-            android:text="Internal Management"
-            android:textColor="@color/text_sub_title"
-            android:textSize="12sp" />
-
-        <ImageView
-            android:id="@+id/img_search"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginHorizontal="16dp"
-            android:src="@drawable/ic_baseline_search_24"
-            app:tint="@color/text_sub_title" />
+        </androidx.core.widget.NestedScrollView>
 
     </RelativeLayout>
 
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/rl1">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <RelativeLayout
-                android:id="@+id/rl2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="20dp">
-
-                <com.github.mikephil.charting.charts.PieChart
-                    android:id="@+id/pie_chart"
-                    android:layout_width="200dp"
-                    android:layout_height="200dp" />
-
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@id/rl2">
-
-                <TextView
-                    android:id="@+id/tv1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="16dp"
-                    android:layout_marginTop="16dp"
-                    android:text="Data petani"
-                    android:textColor="@color/black"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_petani"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/tv1"
-                    tools:listitem="@layout/item_petani" />
-
-
-            </RelativeLayout>
-
-        </RelativeLayout>
-
-    </androidx.core.widget.NestedScrollView>
-
-</RelativeLayout>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

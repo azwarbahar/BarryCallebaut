@@ -46,13 +46,56 @@ class InspeksiFragment : Fragment() {
         }
 
         loadData(petani_id)
+        loadDataPenilaian(petani_id)
 
         return view
     }
 
-    private fun loadData(petani_id: String) {
+    private fun loadDataPenilaian(petaniId: String) {
 
-        ApiClient.instances.getInspeksiPetaniId(petani_id)
+        ApiClient.instances.getPenilaianPetani(petaniId)
+            ?.enqueue(object : Callback<Responses.ResponsePenilaian> {
+                override fun onResponse(
+                    call: Call<Responses.ResponsePenilaian>,
+                    response: Response<Responses.ResponsePenilaian>
+                ) {
+                    if (response.isSuccessful) {
+                        var kode = response.body()?.kode
+                        var pesan = response.body()?.pesan
+                        var message = response.message()
+                        if (kode.equals("1")) {
+                            var nilai = response.body()?.nilai
+                            initPenilaian(nilai)
+
+                        } else {
+
+                        }
+
+
+                    } else {
+
+                    }
+
+                }
+
+                override fun onFailure(call: Call<Responses.ResponsePenilaian>, t: Throwable) {
+
+                }
+
+            })
+
+
+    }
+
+    private fun initPenilaian(nilai: String?) {
+
+        binding.tvNilai.setText(nilai)
+
+    }
+
+    private fun loadData(petaniId: String) {
+
+        ApiClient.instances.getInspeksiPetaniId(petaniId)
             ?.enqueue(object : Callback<Responses.ResponseInspeksi> {
                 override fun onResponse(
                     call: Call<Responses.ResponseInspeksi>,
@@ -99,5 +142,11 @@ class InspeksiFragment : Fragment() {
         inspeksiAdapter = InspeksiAdapter(inspeksi)
         rv_inspeksi.adapter = inspeksiAdapter
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        loadData(petani_id)
+        loadDataPenilaian(petani_id)
     }
 }

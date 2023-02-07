@@ -22,4 +22,18 @@ class Responses {
         val kode: String?,
         val pesan: String?
     )
+
+    data class ResponsePenilaian(
+        val kode: String?,
+        val pesan: String?,
+        val nilai: String?
+    )
+
+    data class ResponseJumlahSensus(
+        val kode: String?,
+        val pesan: String?,
+        val sudah_sensus: String?,
+        val belum_sensus: String?,
+        val suspended: String?
+    )
 }

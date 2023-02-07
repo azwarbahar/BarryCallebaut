@@ -12,6 +12,11 @@ interface ApiService {
     @GET("getPetani.php")
     fun getPetani(): Call<Responses.ResponsePetani>?
 
+    @GET("getPetaniPetugasId.php")
+    fun getPetaniPetugasId(
+        @Query("petugas_id") petugas_id: String?
+    ): Call<Responses.ResponsePetani>?
+
     @GET("getPetaniId.php")
     fun getPetaniId(
         @Query("id") id: String?
@@ -59,4 +64,39 @@ interface ApiService {
     fun getInspeksiPetaniId(
         @Query("petani_id") petani_id: String?
     ): Call<Responses.ResponseInspeksi>?
+
+
+    @Multipart
+    @POST("addInspeksi.php")
+    fun addInspeksi(
+        @Part("tanggal") tanggal: RequestBody?,
+        @Part("tahun") tahun: RequestBody?,
+        @Part("petani_id") petani_id: RequestBody?,
+        @Part("petugas_id") petugas_id: RequestBody?,
+        @Part("a1") a1: RequestBody?,
+        @Part("a2") a2: RequestBody?,
+        @Part("a3") a3: RequestBody?,
+        @Part("a4") a4: RequestBody?,
+        @Part("a5") a5: RequestBody?,
+        @Part("a6") a6: RequestBody?,
+        @Part("a7") a7: RequestBody?,
+        @Part("a8") a8: RequestBody?,
+        @Part("a9") a9: RequestBody?,
+        @Part foto: MultipartBody.Part?
+    ): Call<Responses.ResponseInspeksi>?
+
+
+    // PENILAIAN PETANI
+    @GET("getPenilaianPetani.php")
+    fun getPenilaianPetani(
+        @Query("petani_id") petani_id: String?
+    ): Call<Responses.ResponsePenilaian>?
+
+
+    // JUMLAH SENSUS PETANI
+    @GET("getJumlahSensus.php")
+    fun getJumlahSensus(
+        @Query("role") role: String?,
+        @Query("petugas_id") petugas_id: String?
+    ): Call<Responses.ResponseJumlahSensus>?
 }
