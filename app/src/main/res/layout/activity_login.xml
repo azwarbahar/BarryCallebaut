@@ -7,13 +7,13 @@
     android:background="@color/white"
     tools:context=".ui.LoginActivity">
 
-    <RelativeLayout
+    <ImageView
+        android:src="@drawable/logo_trans_bc"
         android:id="@+id/ll_logo_app"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:background="@color/white4" />
+        android:layout_marginTop="50dp" />
 
 
     <com.google.android.material.textfield.TextInputLayout
@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/ll_logo_app"
         android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="70dp"
         android:textColorHint="@color/grey"
         app:boxStrokeColor="@color/grey"
         app:hintTextColor="@color/grey"
@@ -74,7 +74,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/til_password"
         android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="60dp"
         android:background="@drawable/bg_primary_corner_8"
         android:paddingVertical="10dp">
 
@@ -94,6 +94,7 @@
         android:textColor="@color/colorPrimary"
         android:textStyle="bold"
         android:textSize="14sp"
+        android:visibility="gone"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/rl_login"
         android:text="Lupa Password?"

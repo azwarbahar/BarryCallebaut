@@ -2,6 +2,7 @@ package com.barrycallebaut.app.ui
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -51,6 +52,18 @@ class DetailInspeksiActivity : AppCompatActivity() {
         }
 
         initData(inspeksi)
+
+
+
+        binding.imgDokumentasi.setOnClickListener {
+
+            var foto_intent = Constant.URL_PHOTO + inspeksi.foto.toString()
+            val intent = Intent(this, PreviewPhotoActivity::class.java)
+            intent.putExtra("foto", foto_intent)
+            startActivity(intent)
+
+        }
+
 
     }
 

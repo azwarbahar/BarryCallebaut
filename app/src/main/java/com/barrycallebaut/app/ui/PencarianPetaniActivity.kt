@@ -10,10 +10,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.barrycallebaut.app.R
 import com.barrycallebaut.app.adapter.PetaniAdapter
+import com.barrycallebaut.app.database.lokal.PreferencesHelper
 import com.barrycallebaut.app.database.server.ApiClient
 import com.barrycallebaut.app.databinding.ActivityPencarianPetaniBinding
 import com.barrycallebaut.app.models.Petani
 import com.barrycallebaut.app.models.Responses
+import com.barrycallebaut.app.utils.Constant
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -27,7 +29,10 @@ class PencarianPetaniActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefres
 
     private lateinit var petani: List<Petani>
 
-    private var petugas_id: String = "7"
+    private lateinit var sharedPref: PreferencesHelper
+    private var petugas_id: String = ""
+    private var role: String = ""
+
     private lateinit var petaniAdapter: PetaniAdapter
 
     private lateinit var swipe_refresh: SwipeRefreshLayout
@@ -36,6 +41,10 @@ class PencarianPetaniActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefres
         super.onCreate(savedInstanceState)
         binding = ActivityPencarianPetaniBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        sharedPref = PreferencesHelper(this)
+        petugas_id = sharedPref.getString(Constant.ID_USER).toString()
+        role = sharedPref.getString(Constant.ROLE).toString()
 
         swipe_refresh = binding.swipeRefresh
         swipe_refresh.setOnRefreshListener(this)
@@ -46,7 +55,7 @@ class PencarianPetaniActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefres
             android.R.color.holo_green_dark
         )
         swipe_refresh.post(Runnable {
-            loadData()
+            loadData(role)
         })
 
 
@@ -88,32 +97,37 @@ class PencarianPetaniActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefres
 
     }
 
-    private fun loadData() {
+    private fun loadData(role: String) {
 
-        ApiClient.instances.getPetaniPetugasId(petugas_id)
-            ?.enqueue(object : Callback<Responses.ResponsePetani> {
-                override fun onResponse(
-                    call: Call<Responses.ResponsePetani>,
-                    response: Response<Responses.ResponsePetani>
-                ) {
-                    swipe_refresh.isRefreshing = false
-                    if (response.isSuccessful) {
-                        val pesanRespon = response.message()
-                        val message = response.body()?.pesan
-                        val kode = response.body()?.kode
-                        if (kode.equals("1")) {
-                            petani = response.body()?.petani_data!!
+        if (role.equals("Koordinator")) {
+            ApiClient.instances.getPetani()
+                ?.enqueue(object : Callback<Responses.ResponsePetani> {
+                    override fun onResponse(
+                        call: Call<Responses.ResponsePetani>,
+                        response: Response<Responses.ResponsePetani>
+                    ) {
+                        swipe_refresh.isRefreshing = false
+                        if (response.isSuccessful) {
+                            val pesanRespon = response.message()
+                            val message = response.body()?.pesan
+                            val kode = response.body()?.kode
+                            if (kode.equals("1")) {
+                                petani = response.body()?.petani_data!!
 
-                            if (petani.size > 0) {
+                                if (petani.size > 0) {
 
-                                binding.rvPetani.visibility = View.VISIBLE
-                                binding.imgEmpty.visibility = View.GONE
-                                val rv_petani = binding.rvPetani
-                                rv_petani.layoutManager =
-                                    LinearLayoutManager(this@PencarianPetaniActivity)
-                                petaniAdapter = PetaniAdapter(petani)
-                                rv_petani.adapter = petaniAdapter
+                                    binding.rvPetani.visibility = View.VISIBLE
+                                    binding.imgEmpty.visibility = View.GONE
+                                    val rv_petani = binding.rvPetani
+                                    rv_petani.layoutManager =
+                                        LinearLayoutManager(this@PencarianPetaniActivity)
+                                    petaniAdapter = PetaniAdapter(petani)
+                                    rv_petani.adapter = petaniAdapter
 
+                                } else {
+                                    binding.rvPetani.visibility = View.GONE
+                                    binding.imgEmpty.visibility = View.VISIBLE
+                                }
                             } else {
                                 binding.rvPetani.visibility = View.GONE
                                 binding.imgEmpty.visibility = View.VISIBLE
@@ -122,27 +136,73 @@ class PencarianPetaniActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefres
                             binding.rvPetani.visibility = View.GONE
                             binding.imgEmpty.visibility = View.VISIBLE
                         }
-                    } else {
+
+                    }
+
+                    override fun onFailure(call: Call<Responses.ResponsePetani>, t: Throwable) {
+                        swipe_refresh.isRefreshing = false
+                        Log.e("ERROR", "Pesan : " + t.message)
                         binding.rvPetani.visibility = View.GONE
                         binding.imgEmpty.visibility = View.VISIBLE
                     }
 
-                }
+                })
+        } else {
 
-                override fun onFailure(call: Call<Responses.ResponsePetani>, t: Throwable) {
-                    swipe_refresh.isRefreshing = false
-                    Log.e("ERROR", "Pesan : " + t.message)
-                    binding.rvPetani.visibility = View.GONE
-                    binding.imgEmpty.visibility = View.VISIBLE
-                }
+            ApiClient.instances.getPetaniPetugasId(petugas_id)
+                ?.enqueue(object : Callback<Responses.ResponsePetani> {
+                    override fun onResponse(
+                        call: Call<Responses.ResponsePetani>,
+                        response: Response<Responses.ResponsePetani>
+                    ) {
+                        swipe_refresh.isRefreshing = false
+                        if (response.isSuccessful) {
+                            val pesanRespon = response.message()
+                            val message = response.body()?.pesan
+                            val kode = response.body()?.kode
+                            if (kode.equals("1")) {
+                                petani = response.body()?.petani_data!!
 
-            })
+                                if (petani.size > 0) {
 
+                                    binding.rvPetani.visibility = View.VISIBLE
+                                    binding.imgEmpty.visibility = View.GONE
+                                    val rv_petani = binding.rvPetani
+                                    rv_petani.layoutManager =
+                                        LinearLayoutManager(this@PencarianPetaniActivity)
+                                    petaniAdapter = PetaniAdapter(petani)
+                                    rv_petani.adapter = petaniAdapter
+
+                                } else {
+                                    binding.rvPetani.visibility = View.GONE
+                                    binding.imgEmpty.visibility = View.VISIBLE
+                                }
+                            } else {
+                                binding.rvPetani.visibility = View.GONE
+                                binding.imgEmpty.visibility = View.VISIBLE
+                            }
+                        } else {
+                            binding.rvPetani.visibility = View.GONE
+                            binding.imgEmpty.visibility = View.VISIBLE
+                        }
+
+                    }
+
+                    override fun onFailure(call: Call<Responses.ResponsePetani>, t: Throwable) {
+                        swipe_refresh.isRefreshing = false
+                        Log.e("ERROR", "Pesan : " + t.message)
+                        binding.rvPetani.visibility = View.GONE
+                        binding.imgEmpty.visibility = View.VISIBLE
+                    }
+
+                })
+
+        }
 
     }
 
     override fun onRefresh() {
-        loadData()
+        loadData(role)
     }
 
 }

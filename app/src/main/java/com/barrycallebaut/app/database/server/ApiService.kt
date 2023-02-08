@@ -99,4 +99,43 @@ interface ApiService {
         @Query("role") role: String?,
         @Query("petugas_id") petugas_id: String?
     ): Call<Responses.ResponseJumlahSensus>?
+
+    // LOGIN
+    @GET("login.php")
+    fun login(
+        @Query("username") username: String?,
+        @Query("password") password: String?
+    ): Call<Responses.ResponseKaryawan>?
+
+
+    // KARYAWAN
+    @GET("getKaryawanId.php")
+    fun getKaryawanId(
+        @Query("id") id: String?
+    ): Call<Responses.ResponseKaryawan>?
+
+    @Multipart
+    @POST("updatePhotoKaryawan.php")
+    fun updatePhotoKaryawan(
+        @Part("id") id: RequestBody?,
+        @Part foto: MultipartBody.Part?
+    ): Call<Responses.ResponseKaryawan>?
+
+    // UBAH PASSWORD
+    @GET("updatePasswrd.php")
+    fun updatePasswrd(
+        @Query("id") id: String?,
+        @Query("password_lama") password_lama: String?,
+        @Query("password_baru") password_baru: String?
+    ): Call<Responses.ResponseKaryawan>?
+
+    //update Karyawan one data
+    @FormUrlEncoded
+    @POST("updateKaryawanOneData.php")
+    fun updateKaryawanOneData(
+        @Field("id") id: String?,
+        @Field("key") key: String?,
+        @Field("value") value: String?
+    ): Call<Responses.ResponseKaryawan>?
+
 }

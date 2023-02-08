@@ -23,6 +23,14 @@ class Responses {
         val pesan: String?
     )
 
+    data class ResponseKaryawan(
+        val `karyawan_data`: List<Karyawan>?,
+        val `result_karyawan`: Karyawan?,
+        val `data`: Karyawan?,
+        val kode: String?,
+        val pesan: String?
+    )
+
     data class ResponsePenilaian(
         val kode: String?,
         val pesan: String?,

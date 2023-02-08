@@ -23,6 +23,7 @@ import com.barrycallebaut.app.databinding.FragmentSensusBinding
 import com.barrycallebaut.app.models.Petani
 import com.barrycallebaut.app.models.Responses
 import com.barrycallebaut.app.models.Sensus
+import com.barrycallebaut.app.ui.PreviewPhotoActivity
 import com.barrycallebaut.app.utils.Constant
 import com.bumptech.glide.Glide
 import com.github.dhaval2404.imagepicker.ImagePicker
@@ -608,6 +609,20 @@ class SensusFragment : Fragment() {
                 }
                 val dialog = builder.create()
                 dialog.show()
+            }
+        }
+
+        binding.imgDokumentasi.setOnClickListener {
+
+            // DOKUMENTASI
+            var dokumentasi_sensus = petani.dokumentasi_sensus.toString()
+            if (dokumentasi_sensus.equals("") || dokumentasi_sensus.equals("null")) {
+
+            } else {
+                var foto_intent = Constant.URL_PHOTO + dokumentasi_sensus
+                val intent = Intent(activity, PreviewPhotoActivity::class.java)
+                intent.putExtra("foto", foto_intent)
+                startActivity(intent)
             }
         }
 

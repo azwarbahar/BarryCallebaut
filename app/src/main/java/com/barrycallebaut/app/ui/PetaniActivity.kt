@@ -74,7 +74,7 @@ class PetaniActivity : AppCompatActivity() {
             builder.setItems(pilihan) { dialog, which ->
                 when (which) {
                     0 -> openImagePicker(PROFILE_IMAGE_REQ_CODE)
-                    1 -> openPreviewImage("Profil")
+                    1 -> openPreviewImage()
                 }
             }
             val dialog = builder.create()
@@ -83,23 +83,12 @@ class PetaniActivity : AppCompatActivity() {
 
     }
 
-    private fun openPreviewImage(s: String) {
+    private fun openPreviewImage() {
 
-//        var foto = user.foto
-//        var header = user.foto_sampul
-//        if (s.equals("Profil")) {
-//            var foto_intent = BuildConfig.BASE_URL + "upload/photo/" + foto
-//
-//            val intent = Intent(context, ShowPhotoActivity::class.java)
-//            intent.putExtra("foto", foto_intent)
-//            startActivity(intent)
-//        } else {
-//            var foto_intent = BuildConfig.BASE_URL + "upload/photo/" + header
-//
-//            val intent = Intent(context, ShowPhotoActivity::class.java)
-//            intent.putExtra("foto", foto_intent)
-//            startActivity(intent)
-//        }
+        var foto_intent = Constant.URL_PHOTO + petani.foto.toString()
+        val intent = Intent(this, PreviewPhotoActivity::class.java)
+        intent.putExtra("foto", foto_intent)
+        startActivity(intent)
 
     }
 

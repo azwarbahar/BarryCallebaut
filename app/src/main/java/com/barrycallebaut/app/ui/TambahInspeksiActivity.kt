@@ -40,7 +40,9 @@ class TambahInspeksiActivity : AppCompatActivity() {
     private lateinit var sharedPref: PreferencesHelper
     private lateinit var petani: Petani
     private var petani_id: String = ""
-    private var petugas_id: String = "7"
+
+    private var petugas_id: String = ""
+    private var role: String = ""
 
     private val IMAGE_REQ_CODE = 102
 
@@ -66,6 +68,8 @@ class TambahInspeksiActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         sharedPref = PreferencesHelper(this)
+        petugas_id = sharedPref.getString(Constant.ID_USER).toString()
+        role = sharedPref.getString(Constant.ROLE).toString()
         petani_id = sharedPref.getString(Constant.ID_PETANI_SELECTED).toString()
 
         initView()

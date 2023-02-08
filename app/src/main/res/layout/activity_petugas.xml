@@ -37,7 +37,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/ishaq" />
+                        android:src="@color/colorPrimary" />
 
                 </RelativeLayout>
 
@@ -47,7 +47,7 @@
                 android:id="@+id/tv_nama"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
+                android:layout_marginLeft="12dp"
                 android:layout_marginTop="5dp"
                 android:layout_toLeftOf="@+id/img_search"
                 android:layout_toRightOf="@id/cv_photo"
@@ -59,6 +59,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/tv_alamat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_nama"
@@ -67,7 +68,7 @@
                 android:layout_toLeftOf="@+id/img_search"
                 android:ellipsize="end"
                 android:maxLines="2"
-                android:text="Internal Management"
+                android:text="xxx"
                 android:textColor="@color/text_sub_title"
                 android:textSize="12sp" />
 
