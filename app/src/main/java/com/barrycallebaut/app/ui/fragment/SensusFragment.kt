@@ -579,7 +579,7 @@ class SensusFragment : Fragment() {
             showDialogInput(title, type, key)
         }
 
-        binding.imgEditJarakTanam.setOnClickListener {
+        binding.imgEditHasilPanen.setOnClickListener {
             var title = "Hasil Panen (Kg) : "
             var type = "Number"
             var key = "hasil_panen"

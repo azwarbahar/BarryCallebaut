@@ -33,7 +33,7 @@ class LoginActivity : AppCompatActivity() {
 
             val role = sharedPref.getString(Constant.ROLE)
             if (role.equals("Koordinator")) {
-                val menu_petugas = Intent(this, PetugasActivity::class.java)
+                val menu_petugas = Intent(this, KoordinatorActivity::class.java)
                 startActivity(menu_petugas)
                 finish()
             } else if (role.equals("Petugas")) {
@@ -128,8 +128,15 @@ class LoginActivity : AppCompatActivity() {
         sharedPref.put(Constant.ROLE, posisi)
         sharedPref.put(Constant.ID_USER, data.id.toString())
 
-            startActivity(Intent(this, PetugasActivity::class.java))
+        if (posisi.equals("Koordinator")) {
+            val menu_petugas = Intent(this, KoordinatorActivity::class.java)
+            startActivity(menu_petugas)
             finish()
+        } else if (posisi.equals("Petugas")) {
+            val menu_petugas = Intent(this, PetugasActivity::class.java)
+            startActivity(menu_petugas)
+            finish()
+        }
 
     }
 }

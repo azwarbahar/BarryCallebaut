@@ -65,7 +65,7 @@
                 android:layout_marginTop="8dp"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="Santa Ana, Illinois 85486 "
+                android:text="Field facilitator"
                 android:textColor="@color/grey_hint"
                 android:textSize="12sp" />
 
@@ -85,17 +85,18 @@
                 android:id="@+id/tv_status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Inspeksi : 0/4"
-                android:textSize="12sp" />
+                android:text="00/00"
+                android:textSize="14sp"
+                android:textColor="@color/colorAccent"/>
 
 
             <ImageView
                 android:id="@+id/img_status"
-                android:src="@drawable/ic_baseline_warning_24"
-                android:layout_width="20dp"
-                android:layout_marginLeft="8dp"
-                android:layout_height="20dp"
-                app:tint="@color/grey_hint" />
+                android:src="@drawable/ic_baseline_keyboard_arrow_right_24"
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_height="wrap_content"
+                app:tint="@color/colorPrimary" />
 
         </LinearLayout>
 

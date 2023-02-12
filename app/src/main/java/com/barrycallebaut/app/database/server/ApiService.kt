@@ -114,6 +114,11 @@ interface ApiService {
         @Query("id") id: String?
     ): Call<Responses.ResponseKaryawan>?
 
+    @GET("getKaryawanPosisi.php")
+    fun getKaryawanPosisi(
+        @Query("posisi") posisi: String?
+    ): Call<Responses.ResponseKaryawan>?
+
     @Multipart
     @POST("updatePhotoKaryawan.php")
     fun updatePhotoKaryawan(
