@@ -138,7 +138,7 @@ class SensusFragment : Fragment() {
         if (type.equals("Text")) {
             input.inputType = InputType.TYPE_CLASS_TEXT
         } else if (type.equals("Number")) {
-            input.inputType = InputType.TYPE_CLASS_NUMBER
+            input.inputType = InputType.TYPE_NUMBER_FLAG_DECIMAL
         } else if (type.equals("Phone")) {
             input.inputType = InputType.TYPE_CLASS_PHONE
         } else {
