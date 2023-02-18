@@ -17,6 +17,12 @@ interface ApiService {
         @Query("petugas_id") petugas_id: String?
     ): Call<Responses.ResponsePetani>?
 
+    @GET("getPetaniDeportasi.php")
+    fun getPetaniDeportasi(
+        @Query("petugas_id") petugas_id: String?,
+        @Query("role") role: String?
+    ): Call<Responses.ResponsePetani>?
+
     @GET("getPetaniId.php")
     fun getPetaniId(
         @Query("id") id: String?

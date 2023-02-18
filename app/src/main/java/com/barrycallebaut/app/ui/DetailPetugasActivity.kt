@@ -75,6 +75,11 @@ class DetailPetugasActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshL
             startActivity(intent)
         }
 
+        binding.llLihatData.setOnClickListener {
+            val intent = Intent(this, DeportasiPetaniActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 
     private fun loadDataSensus() {

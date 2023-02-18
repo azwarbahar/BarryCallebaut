@@ -14,6 +14,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import cn.pedant.SweetAlert.SweetAlertDialog
 import com.barrycallebaut.app.R
 import com.barrycallebaut.app.adapter.PetaniAdapter
+import com.barrycallebaut.app.adapter.PetaniDeportasiAdapter
 import com.barrycallebaut.app.database.lokal.PreferencesHelper
 import com.barrycallebaut.app.database.server.ApiClient
 import com.barrycallebaut.app.databinding.ActivityPetugasBinding
@@ -71,6 +72,11 @@ class PetugasActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListene
 
         binding.tvNama.setOnClickListener {
             val intent = Intent(this, AkunPetugasActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.llLihatData.setOnClickListener {
+            val intent = Intent(this, DeportasiPetaniActivity::class.java)
             startActivity(intent)
         }
 
